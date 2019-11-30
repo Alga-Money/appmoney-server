@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     includeDashboard:DataTypes.BOOLEAN,    
   })
 
-  Account.associate = model => {
+  Account.associate = models => {
     Account.belongsTo(models.AccountType, {foreingKey: 'account_type_id'}),
     Account.belongsTo(models.User, {foreingKey: 'user_id'})
 } 
