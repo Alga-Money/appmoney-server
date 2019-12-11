@@ -8,7 +8,7 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
     */
       Example:
-      return queryInterface.bulkInsert('account_type', [
+      return queryInterface.bulkInsert('account_types', [
         {
         name: 'Outros',
         created_at: new Date(),
@@ -19,7 +19,7 @@ module.exports = {
         created_at: new Date(),
         updated_at: new Date()
         }
-       , 
+       ,
         {
           name: 'Conta Corrente',
         created_at: new Date(),
@@ -32,11 +32,11 @@ module.exports = {
           updated_at: new Date()
         }
     ], {});
-    
+
   },
 
   down: (queryInterface, Sequelize) => {
-    
+
       return queryInterface.bulkDelete('account_type', null, {});
   	/*
       Add reverting commands here.

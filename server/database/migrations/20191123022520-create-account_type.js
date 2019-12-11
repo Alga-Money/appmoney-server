@@ -2,14 +2,14 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('account_type', {
+    return queryInterface.createTable('account_types', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      
+
       name: {
         type: Sequelize.STRING,
         allowNull: false
@@ -28,9 +28,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue:Sequelize.NOW
-        
+
       }
-      
+
     });
     /*
       Add altering commands here.
@@ -42,7 +42,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('account_type');
+    return queryInterface.dropTable('account_types');
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.

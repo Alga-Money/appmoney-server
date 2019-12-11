@@ -33,4 +33,5 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.account   = require('../models/account')(sequelize, Sequelize);
+db.accountType = require('../models/accountType')(sequelize, Sequelize);
 module.exports = db;

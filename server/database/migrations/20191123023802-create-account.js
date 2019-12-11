@@ -25,10 +25,9 @@ module.exports = {
       account_type_id: {
         type:Sequelize.INTEGER,
         allowNull: false,
-        references: {model: 'account_type', key: 'id'},
+        references: {model: 'account_types', key: 'id'},
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-        allowNull: false,
 
       },
       user_id: {
@@ -37,7 +36,6 @@ module.exports = {
         references: {model: 'users', key: 'id'},
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-        allowNull: false,
 
       },
       created_at: {
@@ -48,7 +46,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-      
+
     });
     /*
       Add altering commands here.
@@ -63,9 +61,7 @@ module.exports = {
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.dropTable('users');
-    */
+	*/
+      return queryInterface.dropTable('accounts');
   }
 };
