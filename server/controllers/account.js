@@ -17,11 +17,26 @@ module.exports = {
 			});
         } catch (error) {
             res.status(500).json({
-                status: 'error',
                 message:services.message.common.thereIsSomeError
             });
         }
-    },
+	},
+	
+	async createAccount(req, res) {
+		try {
+			const obj = req.body;
+			const ret = await account.create(obj);
+			res.status(201).send({
+				message: services.message.common.genericSuccessMessage,
+				data: ret}
+			)
+		} catch (error) {
+			res.status(500).send({
+				status
+			})
+		}
+	}
+	,
 
 	async getAccountTypes(req, res) {
    		try {
@@ -37,7 +52,6 @@ module.exports = {
 
    		}catch (error) {
 			res.status(500).json({
-				status: 'error',
 				message: error
 			});
 		}
@@ -46,7 +60,6 @@ module.exports = {
 
 	async getAccountTypesByCodigo(req, res) {
 		try {
-			console.log(req.params);
 			let paramId = req.params.codigo;
 			console.log(paramId);
 			const accountTypes = await accountType.findOne({
@@ -77,8 +90,7 @@ module.exports = {
 			});
         } catch (error) {
 			res.status(500).json({
-				status: 'error',
-				error
+				message:error
 			});
         }
     }

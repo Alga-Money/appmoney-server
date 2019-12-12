@@ -10,6 +10,5 @@
 
      app.route("/account-types").post(controllers.account.createAccountTypes);
 
-
      app.route("/accounts").post(controllers.account.getAccounts);
  };

@@ -4,6 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     color: DataTypes.STRING,
     includeDashboard:DataTypes.BOOLEAN,    
+    openingBalance:DataTypes.DECIMAL,
+    ignoreOverallBalance:DataTypes.BOOLEAN
   })
 
   Account.associate = models => {

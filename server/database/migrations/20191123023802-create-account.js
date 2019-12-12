@@ -30,6 +30,15 @@ module.exports = {
         onDelete: 'CASCADE',
 
       },
+	  opening_balance: {
+      	type:Sequelize.DECIMAL(10,2),
+		defaultValue: 0.00,
+    },
+    ignore_overall_balance: {
+     type:Sequelize.BOOLEAN,
+     defaultValue: false, 
+    },
+
       user_id: {
         type:Sequelize.INTEGER,
         allowNull: false,
