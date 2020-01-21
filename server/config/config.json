@@ -14,11 +14,16 @@
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "database_test",
+    "password": "12345",
+    "database": "financas",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": false,
+    "define": {
+      "timestamps": true,
+      "underscored": true,
+      "underscoredAll":true
+    }
   },
   "production": {
     "username": "root",

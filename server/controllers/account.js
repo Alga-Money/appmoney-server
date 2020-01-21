@@ -67,9 +67,17 @@ module.exports = {
 				id: paramId
 			}
 		 });
-			res.status(200).send({
-			 message:services.message.common.genericSuccessMessage,
-			 data:accountTypes
+			
+		 if (accountTypes){
+			return res.status(200).send({
+				message:services.message.common.genericSuccessMessage,
+				data:accountTypes
+			})
+		 }
+	
+		 return res.status(404).send({
+			 message:services.message.common.notFound,
+			 data:{}
 		 })
 
 		}catch (error) {

@@ -2,9 +2,10 @@
 
 module.exports = {
 	common:{
-		genericSuccessMessage: 'sucesso.',
+		genericSuccessMessage: 'Sucesso.',
 		recordUpdatedSuccessfully: 'Registro atualizado com sucesso.',
 		thereIsSomeError: 'Ocorreu algum erro. Por favor tente novamente.',
+		notFound: 'Registro não encontrado!'
 	},
 	account:{
 
