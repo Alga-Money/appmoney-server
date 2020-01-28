@@ -6,5 +6,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
 	  underscored: true
   });
+
+  AccountType.associate = function(models) {
+   AccountType.hasMany(models.Account, {as:'accounts'}) 
+  };
+
+
   return AccountType;
 };

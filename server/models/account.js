@@ -5,12 +5,14 @@ module.exports = (sequelize, DataTypes) => {
     color: DataTypes.STRING,
     includeDashboard:DataTypes.BOOLEAN,    
     openingBalance:DataTypes.DECIMAL,
-    ignoreOverallBalance:DataTypes.BOOLEAN
+    ignoreOverallBalance:DataTypes.BOOLEAN,
+    accountTypeId: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER, 
   })
 
   Account.associate = models => {
-    Account.belongsTo(models.AccountType, {foreingKey: 'account_type_id'}),
-    Account.belongsTo(models.User, {foreingKey: 'user_id'})
+  Account.belongsTo(models.AccountType, {foreingKey: 'account_type_id', as: 'accountType'}),
+  Account.belongsTo(models.User, {foreingKey: 'user_id', as: 'user'})
 } 
 
   return Account;

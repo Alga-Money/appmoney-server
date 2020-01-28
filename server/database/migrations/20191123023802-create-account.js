@@ -15,7 +15,7 @@ module.exports = {
         },
       color:{
         type:Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       include_dashboard: {
          type: Sequelize.BOOLEAN,

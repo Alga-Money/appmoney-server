@@ -32,6 +32,18 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+
+
+/*         */
+
 db.account   = require('../models/account')(sequelize, Sequelize);
+
 db.accountType = require('../models/accountType')(sequelize, Sequelize);
+
+
+db.accountType.hasMany(db.account);
+db.account.belongsTo(db.accountType);
+
+
+
 module.exports = db;

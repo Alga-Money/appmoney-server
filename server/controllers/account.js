@@ -7,6 +7,7 @@ module.exports = {
    async getAccounts(req, res) {
         try {
             const accounts =  await account.findAll({
+				include:accountType,
                 order: [
                     ['description', 'ASC'],
                 ],
@@ -16,12 +17,37 @@ module.exports = {
 				data:accounts
 			});
         } catch (error) {
+			console.error(error);
             res.status(500).json({
                 message:services.message.common.thereIsSomeError
             });
         }
 	},
+
 	
+	async getAccountsById(req, res) {
+        try {
+			let id = req.params.codigo;
+
+            const accounts =  await account.findAll({
+				include:accountType,
+                order: [
+                    ['description', 'ASC'],
+				],
+				where:{id:id}
+            });
+            res.status(200).send({
+				status:services.message.common.genericSuccessMessage,
+				data:accounts
+			});
+        } catch (error) {
+			console.error(error);
+            res.status(500).json({
+                message:services.message.common.thereIsSomeError
+            });
+        }
+	},
+
 	async createAccount(req, res) {
 		try {
 			const obj = req.body;
@@ -31,6 +57,7 @@ module.exports = {
 				data: ret}
 			)
 		} catch (error) {
+			console.error(error);
 			res.status(500).send({
 				status
 			})
@@ -61,8 +88,8 @@ module.exports = {
 	async getAccountTypesByCodigo(req, res) {
 		try {
 			let paramId = req.params.codigo;
-			console.log(paramId);
 			const accountTypes = await accountType.findOne({
+				include:account,
 			where:{
 				id: paramId
 			}
@@ -81,6 +108,7 @@ module.exports = {
 		 })
 
 		}catch (error) {
+			console.error(error);
 		 res.status(500).json({
 			 message: error
 		 });
