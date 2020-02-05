@@ -7,7 +7,9 @@ module.exports = {
    async getAccounts(req, res) {
         try {
             const accounts =  await account.findAll({
-				include:accountType,
+				 include:[
+				 	{model:accountType}
+				 ],
                 order: [
                     ['description', 'ASC'],
                 ],
