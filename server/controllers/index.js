@@ -1,5 +1,8 @@
-'use strict'
-const account = require('./account');
+const account = require('./account')
+const user = require('./user')
+const transactionAccount = require('./transactionAccount')
 module.exports = {
-    account
-};
+  account,
+  user,
+  transactionAccount
+}
