@@ -1,50 +1,50 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('accounts',{
+    return queryInterface.createTable('accounts', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      description:{
-          type: Sequelize.STRING,
-          allowNull: false,
-        },
-      color:{
-        type:Sequelize.STRING,
+      description: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      color: {
+        type: Sequelize.STRING,
         allowNull: true
       },
       include_dashboard: {
-         type: Sequelize.BOOLEAN,
-         allowNull: false,
-         defaultValue: true
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: true
       },
       account_type_id: {
-        type:Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
-        references: {model: 'account_types', key: 'id'},
+        references: { model: 'account_types', key: 'id' },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onDelete: 'CASCADE'
 
       },
-	  opening_balance: {
-      	type:Sequelize.DECIMAL(10,2),
-		defaultValue: 0.00,
-    },
-    ignore_overall_balance: {
-     type:Sequelize.BOOLEAN,
-     defaultValue: false, 
-    },
+      opening_balance: {
+        type: Sequelize.DECIMAL(10, 2),
+        defaultValue: 0.00
+      },
+      ignore_overall_balance: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
 
       user_id: {
-        type:Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
-        references: {model: 'users', key: 'id'},
+        references: { model: 'users', key: 'id' },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onDelete: 'CASCADE'
 
       },
       created_at: {
@@ -56,7 +56,7 @@ module.exports = {
         type: Sequelize.DATE
       }
 
-    });
+    })
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -67,10 +67,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-	*/
-      return queryInterface.dropTable('accounts');
+    return queryInterface.dropTable('accounts')
   }
-};
+}
