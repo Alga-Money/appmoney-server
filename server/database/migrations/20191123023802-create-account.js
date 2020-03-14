@@ -15,7 +15,7 @@ module.exports = {
         },
       color:{
         type:Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       include_dashboard: {
          type: Sequelize.BOOLEAN,
@@ -25,19 +25,26 @@ module.exports = {
       account_type_id: {
         type:Sequelize.INTEGER,
         allowNull: false,
-        references: {model: 'account_type', key: 'id'},
+        references: {model: 'account_types', key: 'id'},
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-        allowNull: false,
 
       },
+	  opening_balance: {
+      	type:Sequelize.DECIMAL(10,2),
+		defaultValue: 0.00,
+    },
+    ignore_overall_balance: {
+     type:Sequelize.BOOLEAN,
+     defaultValue: false, 
+    },
+
       user_id: {
         type:Sequelize.INTEGER,
         allowNull: false,
         references: {model: 'users', key: 'id'},
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-        allowNull: false,
 
       },
       created_at: {
@@ -48,7 +55,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-      
+
     });
     /*
       Add altering commands here.
@@ -63,9 +70,7 @@ module.exports = {
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.dropTable('users');
-    */
+	*/
+      return queryInterface.dropTable('accounts');
   }
 };
