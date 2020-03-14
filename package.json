@@ -7,17 +7,6 @@
     "dev": "node --inspect-brk=0.0.0.0:9229 ./bin/www --ignore __tests__ ",
     "test": "jest"
   },
-  "lint-staged": {
-    "*.js": [
-      "standard --fix",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
