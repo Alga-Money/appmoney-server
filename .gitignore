@@ -3,3 +3,5 @@
 /.idea/
 
 database.sqlite3
+.env
+.vscode/launch.json
