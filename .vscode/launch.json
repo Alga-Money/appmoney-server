@@ -6,6 +6,15 @@
     "configurations": [
         {
             "type": "node",
+            "request": "attach",
+            "name": "Debug Remote Docker",
+            "address": "127.0.0.1",
+            "port": 9229,
+            "localRoot": "${workspaceRoot}/",
+            "remoteRoot": "/usr/src/app/"
+        },
+        {
+            "type": "node",
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}/bin/www"

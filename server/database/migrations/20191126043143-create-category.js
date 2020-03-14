@@ -1,24 +1,23 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-
     return queryInterface.createTable('category', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
-      
+
       name: {
         type: Sequelize.STRING,
         allowNull: false
       },
       color: {
-        type:Sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false
-      } ,      
+      },
       is_active: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,
@@ -27,15 +26,15 @@ module.exports = {
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue:Sequelize.NOW
+        defaultValue: Sequelize.NOW
       },
       updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue:Sequelize.NO
+        defaultValue: Sequelize.NOW
       }
-      
-    });
+
+    })
 
     /*
       Add altering commands here.
@@ -47,7 +46,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('category');
+    return queryInterface.dropTable('category')
 
     /*
       Add reverting commands here.
@@ -57,4 +56,4 @@ module.exports = {
       return queryInterface.dropTable('users');
     */
   }
-};
+}

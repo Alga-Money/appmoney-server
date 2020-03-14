@@ -10,9 +10,11 @@ module.exports = (sequelize, DataTypes) => {
     transactionValue: DataTypes.DECIMAL,
     paymentValue: DataTypes.DECIMAL,
     accountId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER
-
-  }, {})
+    userId: DataTypes.INTEGER,
+    categoryId: DataTypes.INTEGER
+  }, {
+    underscored: true
+  })
   TransactionAccount.associate = function (models) {
     // associations can be defined here
   }
