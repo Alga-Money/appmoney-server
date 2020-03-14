@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -7,20 +7,20 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       email: {
         allowNull: false,
         type: Sequelize.STRING,
-        unique: true,
+        unique: true
       },
       password: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       created_at: {
         allowNull: false,
@@ -30,8 +30,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    
-    });
+
+    })
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -42,8 +42,8 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('users');
-    
+    return queryInterface.dropTable('users')
+
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
@@ -52,4 +52,4 @@ module.exports = {
       return queryInterface.dropTable('users');
     */
   }
-};
+}
