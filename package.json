@@ -7,6 +7,7 @@
     "dev": "node --inspect-brk=0.0.0.0:9229 ./bin/www --ignore __tests__ ",
     "test": "jest"
   },
+  
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",

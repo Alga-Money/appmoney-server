@@ -1,43 +1,39 @@
 'use strict'
 var jwt = require('jsonwebtoken')
 
+// const fs = require('fs')
+
 var services = require('../services')
+
 module.exports = {
 
-  authSession (req, res, next) {
-    if (req.header('token')) {
-      var token = req.header('token')
-      services.auth.checkSession(token).then(
-        function (session) {
-          req.session = session
-          next()
-        }
-        // function (err) {
-        //   res.status(401).json({
-        //     status: 'error',
-        //     message: services.message.invalidToken
-        //   })
-        // }
-      )
-    } else {
-      res.status(401).json({
-        status: 'error',
-        message: services.message.noTokenSent
-      })
-    }
-  },
-
   login (req, res, next) {
+    // validart usuario
     if (req.body.user === 'luiz' && req.body.pwd === '123') {
-      // auth ok
-      const id = 1 // esse id viria do banco de dados
-      var token = jwt.sign({ id }, process.env.SECRET, {
-        expiresIn: 300 // expires in 5min
-      })
-      res.status(200).send({ auth: true, token: token })
-    }
+      // verificar se arquivo existe
 
-    res.status(500).send('Login inválido!')
+      // fs.readFile('../../private.key', (err, data) => {
+      //   if (err) throw err
+
+      //   var privateKey = data
+      //   const id = 1 // esse id viria do banco de dados
+      //   var token = jwt.sign({ id }, privateKey, {
+      //     expiresIn: 3000,
+      //     algorithm: 'RS256' // expires in 5min
+      //   })
+      //   res.status(200).send({ auth: true, token: token })
+      // })
+
+      var privateKey = 'diogeqwe123'
+      const id = 1 // esse id viria do banco de dados
+      var token = jwt.sign({ id }, privateKey, {
+        expiresIn: 3000 // expires in 5min
+      })
+
+      return res.status(200).send({ auth: true, token: token })
+    } else {
+      res.statius(401).send('Login inválido!')
+    }
   },
   logout (req, res) {
     res.status(200).send({ auth: false, token: null })
