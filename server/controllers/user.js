@@ -30,7 +30,7 @@ module.exports = {
         expiresIn: 3000 // expires in 5min
       })
 
-      return res.status(200).send({ auth: true, token: token })
+      res.status(200).send({ auth: true, token: token })
     } else {
       res.statius(401).send('Login inválido!')
     }
