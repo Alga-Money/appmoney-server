@@ -5,7 +5,7 @@ module.exports = {
   checkSession (req, res, next) {
     var token = req.headers['x-access-token']
 
-    if (req.path === '/auth/signin') {
+    if (req.path === '/auth/signin' || req.path === '/auth/signup') {
       next()
     } else {
       if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' })
