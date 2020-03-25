@@ -2,7 +2,7 @@
 const controllers = require('../controllers')
 
 module.exports = function (app) {
-  app.route('/accounts').get(controllers.account.getAccounts)
+  app.route('/accounts/').get(controllers.account.getAccounts)
 
   app.route('/accounts/:codigo').get(controllers.account.getAccountsById)
 
@@ -13,4 +13,7 @@ module.exports = function (app) {
   app.route('/account-types').post(controllers.account.createAccountTypes)
 
   app.route('/accounts').post(controllers.account.createAccount)
+
+  app.route('/accounts/:codigo').put(controllers.account.editAccount)
+
 }

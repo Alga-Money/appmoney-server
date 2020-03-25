@@ -8,7 +8,9 @@ const bodyParser = require('body-parser')
 var jwt = require('jsonwebtoken')
 const servicesAuth = require('./server/services/auth')
 const app = express()
+const paginate = require('express-paginate');
 
+app.use(paginate.middleware(10, 50));
 app.use(logger('dev'))
 app.use(cors())
 

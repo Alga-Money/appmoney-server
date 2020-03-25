@@ -22,10 +22,10 @@ module.exports = {
           expiresIn: 3000 // expires in 5min
         })
 
-        res.status(200).send({ auth: true, token: token })
+        return res.status(200).send({ auth: true, token: token, user: UserAccount })
       }
     } else {
-      res.status(404).send({ auth: false, token: null })
+		return  res.status(401).send({error: 'Login inválido!'})
     }
 
     if (req.body.user === 'luiz' && req.body.pwd === '123') {
@@ -51,7 +51,7 @@ module.exports = {
 
       res.status(200).send({ auth: true, token: token })
     } else {
-      res.statius(401).send('Login inválido!')
+      return  res.status(401).send('Login inválido!')
     }
   },
   logout (req, res) {
