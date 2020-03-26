@@ -41,6 +41,8 @@ db.transactionAccount = require('../models/transactionAccount')(sequelize, Seque
 
 db.category = require('../models/category')(sequelize, Sequelize)
 
+db.user = require('../models/user')(sequelize, Sequelize)
+
 db.accountType.hasMany(db.account)
 db.account.belongsTo(db.accountType)
 

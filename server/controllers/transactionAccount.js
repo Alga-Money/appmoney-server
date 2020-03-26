@@ -9,7 +9,6 @@ module.exports = {
 
     try {
       const obj = req.body
-      obj.userId = 1
       const ret = await transactionAccount.create(obj)
       res.status(201).send({
         message: services.message.common.genericSuccessMessage,
@@ -21,6 +20,33 @@ module.exports = {
         error: error
       })
     }
+  },
+
+
+  async getTransactions(req, res) {
+  	try{
+		let userId;
+		if (req.query.user_id) {
+			userId = req.query.user_id;
+		}
+		const transactions = await transactionAccount.findAll({
+			// include: [
+			// 	{model: accountType}
+			// ],
+			order: [
+				['created_at', 'ASC']
+			],
+			where: {userId: userId}
+		})
+		res.status(200).send({
+			status: services.message.common.genericSuccessMessage,
+			data: transactions
+		})
+	}catch (e) {
+		res.status(500).send({
+			error: error
+		})
+	}
   }
 
 }
