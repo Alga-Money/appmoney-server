@@ -19,7 +19,7 @@ module.exports = {
         var privateKey = 'diogeqwe123'
         const id = 1 // esse id viria do banco de dados
         var token = jwt.sign({ id }, privateKey, {
-          expiresIn: 3000 // expires in 5min
+          expiresIn: 30000// expires in 5min
         })
 
         return res.status(200).send({ auth: true, token: token, user: UserAccount })

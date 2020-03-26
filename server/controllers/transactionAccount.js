@@ -9,7 +9,6 @@ module.exports = {
 
     try {
       const obj = req.body
-      obj.userId = 1
       const ret = await transactionAccount.create(obj)
       res.status(201).send({
         message: services.message.common.genericSuccessMessage,
