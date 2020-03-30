@@ -73,6 +73,34 @@ module.exports = {
 			error: error
 		})
 	}
-  }
+  },
+
+	async getTransaction(req, res) {
+		try{
+			let userId;
+			if (req.query.user_id) {
+				userId = req.query.user_id;
+			}
+
+			const transactions = await transactionAccount.findOne({
+				include: [
+					{model: category}
+				],
+				order: [
+					['created_at', 'DESC']
+				],
+				where: {userId: userId,id:req.params.codigo}
+			})
+			res.status(200).send({
+				status: services.message.common.genericSuccessMessage,
+				data: transactions
+			})
+		}catch (e) {
+			console.error(e);
+			res.status(500).send({
+				error: error
+			})
+		}
+	}
 
 }
