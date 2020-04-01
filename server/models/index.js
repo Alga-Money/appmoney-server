@@ -50,5 +50,6 @@ db.account.belongsTo(db.accountType)
 db.account.hasMany(db.transactionAccount)
 
 db.transactionAccount.belongsTo(db.category)
+db.transactionAccount.belongsTo(db.account)
 
 module.exports = db

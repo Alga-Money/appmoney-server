@@ -11,29 +11,29 @@ module.exports = {
     try {
       const obj = req.body
       const ret = await transactionAccount.create(obj)
-		const accountRes = await account.findOne({where:{id:ret.accountId}})
-
-
-		//change total account
-		if(ret.type===0)// saida
-		{
-			let totalAccount =  accountRes.openingBalance - obj.transactionValue
-			const retAccount = await account.update({
-				'openingBalance': totalAccount,
-			}, {where:
-					{
-						id:ret.accountId
-					}})
-
-		}else if (ret.type===1){
-			let totalAccount =  accountRes.openingBalance + obj.transactionValue
-			const retAccount = await account.update({
-				'openingBalance': totalAccount,
-			}, {where:
-					{
-						id:ret.accountId
-					}});
-		}
+		// const accountRes = await account.findOne({where:{id:ret.accountId}})
+		//
+		//
+		// //change total account
+		// if(ret.type===0)// saida
+		// {
+		// 	let totalAccount =  accountRes.openingBalance - obj.transactionValue
+		// 	const retAccount = await account.update({
+		// 		'openingBalance': totalAccount,
+		// 	}, {where:
+		// 			{
+		// 				id:ret.accountId
+		// 			}})
+		//
+		// }else if (ret.type===1){
+		// 	let totalAccount =  accountRes.openingBalance + obj.transactionValue
+		// 	const retAccount = await account.update({
+		// 		'openingBalance': totalAccount,
+		// 	}, {where:
+		// 			{
+		// 				id:ret.accountId
+		// 			}});
+		// }
 
       res.status(201).send({
         message: services.message.common.genericSuccessMessage,
@@ -50,10 +50,19 @@ module.exports = {
 
   async getTransactions(req, res) {
   	try{
-		let userId;
+		let where= {};
+
 		if (req.query.user_id) {
-			userId = req.query.user_id;
+			where.userId = req.query.user_id;
 		}
+		if (req.query.type){
+			where.type = req.query.type
+		}if (req.query.status){
+			where.status = req.query.status
+		}
+
+
+
 		const transactions = await transactionAccount.findAll({
 			 include: [
 			 	{model: category}
@@ -61,7 +70,7 @@ module.exports = {
 			order: [
 				['created_at', 'DESC']
 			],
-			where: {userId: userId}
+			where:where
 		})
 		res.status(200).send({
 			status: services.message.common.genericSuccessMessage,
@@ -101,6 +110,39 @@ module.exports = {
 				error: error
 			})
 		}
-	}
+	},
+
+	async updateTransaction(req, res){
+		try {
+			const obj = req.body
+			const ret = await transactionAccount.update({
+				note:obj.note,
+				description: obj.description,
+				type: obj.type,
+				status: obj.status,
+				paymentDate: obj.paymentDate,
+				dueDate: obj.dueDate,
+				transactionValue: obj.transactionValue,
+				paymentValue: obj.paymentValue,
+				accountId: obj.accountId,
+				userId: obj.userId,
+				categoryId: obj.categoryId
+			},{where:{
+				id:req.params.codigo
+				}})
+
+			res.status(200).send({
+					message: services.message.common.genericSuccessMessage,
+					data: ret
+				}
+			)
+		} catch (error) {
+			res.status(500).send({
+				error: error
+			})
+		}
+	},
+
+
 
 }
