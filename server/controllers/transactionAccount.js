@@ -65,8 +65,6 @@ module.exports = {
 			const { limit, offset } = calculateLimitAndOffset(currentPage, pageLimit);
 
 
-
-
 			if (req.query.user_id) {
 				where.userId = req.query.user_id;
 			}
@@ -95,6 +93,48 @@ module.exports = {
 				order: transactionAccount.sequelize.literal('openingBalance DESC')
 			});
 
+			let totalReceivable = await transactionAccount.findAll({
+				attributes: ['account_id', 'type',
+					[transactionAccount.sequelize.fn('sum',
+						transactionAccount.sequelize.col('transaction_accounts.transaction_value')), 'openingBalance']],
+				include: [
+					// {
+					// 	model: account,
+					// 	attributes: ['description']
+					// }
+				],
+				where: {
+					userId: userId,
+					type: [0], status: 1
+				},
+				group: ['`transaction_accounts`.account_id', 'transaction_accounts`.type'],
+
+				raw: true,
+
+				order: transactionAccount.sequelize.literal('openingBalance DESC')
+			});
+
+			let totalScore = await transactionAccount.findAll({
+				attributes: ['account_id', 'type',
+					[transactionAccount.sequelize.fn('sum',
+						transactionAccount.sequelize.col('transaction_accounts.transaction_value')), 'openingBalance']],
+				include: [
+					// {
+					// 	model: account,
+					// 	attributes: ['description']
+					// }
+				],
+				where: {
+					userId: userId,
+					type: [0], status: 1
+				},
+				group: ['`transaction_accounts`.account_id', 'transaction_accounts`.type'],
+
+				raw: true,
+
+				order: transactionAccount.sequelize.literal('openingBalance DESC')
+			});
+
 
 			const { rows, count } = await transactionAccount.findAndCountAll(
 				{
@@ -117,8 +157,8 @@ module.exports = {
 				data: rows,
 				meta
 			})
+
 		} catch (e) {
-			console.error(e);
 			res.status(500).send({
 				error: error
 			})
