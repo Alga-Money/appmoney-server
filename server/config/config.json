@@ -1,14 +1,23 @@
 {
   "development": {
-    "dialect": "sqlite",
-    "storage": "./database.sqlite3"
+    "username": "root",
+    "password": "12345@Aa",
+    "database": "liana_test",
+    "host": "34.95.177.126",
+    "dialect": "mysql"
   },
   "test": {
-    "dialect": "sqlite",
-    "storage": "./database.sqlite3"
+    "username": "dbuser",
+    "password": "password",
+    "database": "liana",
+    "host": "34.95.177.126",
+    "dialect": "mysql"
   },
   "production": {
-    "dialect": "sqlite",
-    "storage": "./database.sqlite3"
+    "username": "dbuser",
+    "password": "password",
+    "database": "liana",
+    "host": "34.95.177.126",
+    "dialect": "mysql"
   }
 }

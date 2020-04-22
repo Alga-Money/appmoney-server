@@ -20,7 +20,7 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
 
       Example:*/
-      return queryInterface.removeColumn('users','user_id');
+      return queryInterface.removeColumn('categories','user_id');
 
   }
 };
