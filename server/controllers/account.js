@@ -6,9 +6,12 @@ module.exports = {
 
 	async getAccounts(req, res) {
 		try {
-			let userId;
+			let where = {};
 			if (req.query.user_id) {
-				userId = req.query.user_id;
+				where.userId = req.query.user_id;
+				if (req.query.dashboard){
+					where.includeDashboard = true;
+				}
 			}
 			const accounts = await account.findAll({
 				include: [
@@ -17,7 +20,7 @@ module.exports = {
 				order: [
 					['description', 'ASC']
 				],
-				where: {userId: userId}
+				where: where
 			})
 			res.status(200).send({
 				status: services.message.common.genericSuccessMessage,

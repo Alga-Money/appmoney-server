@@ -43,9 +43,13 @@ db.category = require('../models/category')(sequelize, Sequelize)
 
 db.user = require('../models/user')(sequelize, Sequelize)
 
+db.category.belongsTo(db.user)
 db.accountType.hasMany(db.account)
 db.account.belongsTo(db.accountType)
 
 db.account.hasMany(db.transactionAccount)
+
+db.transactionAccount.belongsTo(db.category)
+db.transactionAccount.belongsTo(db.account)
 
 module.exports = db
