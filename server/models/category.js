@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     color: DataTypes.STRING,
     isActive: DataTypes.BOOLEAN,
-	userId: DataTypes.INTEGER
+	userId: DataTypes.INTEGER,
+	  type:DataTypes.INTEGER
 
   }, {
     underscored: true

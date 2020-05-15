@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
 
       return queryInterface.addColumn('categories',  'user_id', {
-		  type: Sequelize.INTEGER,
+		  user_id: Sequelize.INTEGER,
 			  allowNull: false,
 			  references: { model: 'users', key: 'id' },
 		  onUpdate: 'CASCADE',
