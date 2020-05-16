@@ -156,7 +156,9 @@ module.exports = {
 
 			res.status(200).send({
 				status: services.message.common.genericSuccessMessage,
-				total: totalTransaction,
+				//total: totalTransaction,
+				totalReceivable:totalReceivable,
+				totalScore:totalScore,
 				data: rows,
 				meta
 			})
