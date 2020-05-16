@@ -64,9 +64,10 @@ module.exports = {
 
 			const { limit, offset } = calculateLimitAndOffset(currentPage, pageLimit);
 
-
+			let userId;
 			if (req.query.user_id) {
 				where.userId = req.query.user_id;
+				userId = req.query.user_id;
 			}
 			if (req.query.type) {
 				where.type = req.query.type
@@ -75,6 +76,8 @@ module.exports = {
 				where.status = req.query.status
 			}
 			if (req.query.date_start && req.query.date_end) {
+				//req.query.date_start.setHours(0,0,0,0);
+				//req.query.date_end.setHours(23,59,59,9999);
 				where.paymentDate= {
 					[Op.between]: [req.query.date_start, req.query.date_end]
 				}
