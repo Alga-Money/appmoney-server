@@ -62,7 +62,9 @@ module.exports = {
 			// 	}}
 			// )
 
+			var totalAccounts = 0.0;
 			ret =  ret.map(obj =>{
+				totalAccounts += Number(obj.openingBalance);
 				return {account_id:obj.account_id,
 				account : accounts.find(el=> el.id === obj.account_id),
 				openingBalance:obj.openingBalance
@@ -71,10 +73,13 @@ module.exports = {
 
 			res.status(200).send({
 				message: services.message.common.genericSuccessMessage,
-				data: ret
+				data: {ret:ret,total:totalAccounts}
 			});
 		} catch (e) {
 			console.error(e)
+			res.status(500).send({
+				error: e
+			})
 
 		}
 
