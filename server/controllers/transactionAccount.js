@@ -76,10 +76,12 @@ module.exports = {
 				where.status = req.query.status
 			}
 			if (req.query.date_start && req.query.date_end) {
-				//req.query.date_start.setHours(0,0,0,0);
-				//req.query.date_end.setHours(23,59,59,9999);
+				let dtInicial =  new Date(req.query.date_start);
+				let dtFinal = new Date(req.query.date_end);
+				dtInicial.setHours(0,0,0,9999);
+				dtFinal.setHours(23,59,59,9999);
 				where.paymentDate= {
-					[Op.between]: [req.query.date_start, req.query.date_end]
+					[Op.between]: [dtInicial, dtFinal]
 				}
 			}
 
