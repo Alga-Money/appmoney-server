@@ -15,30 +15,6 @@ module.exports = {
 		try {
 			const obj = req.body
 			const ret = await transactionAccount.create(obj)
-			// const accountRes = await account.findOne({where:{id:ret.accountId}})
-			//
-			//
-			// //change total account
-			// if(ret.type===0)// saida
-			// {
-			// 	let totalAccount =  accountRes.openingBalance - obj.transactionValue
-			// 	const retAccount = await account.update({
-			// 		'openingBalance': totalAccount,
-			// 	}, {where:
-			// 			{
-			// 				id:ret.accountId
-			// 			}})
-			//
-			// }else if (ret.type===1){
-			// 	let totalAccount =  accountRes.openingBalance + obj.transactionValue
-			// 	const retAccount = await account.update({
-			// 		'openingBalance': totalAccount,
-			// 	}, {where:
-			// 			{
-			// 				id:ret.accountId
-			// 			}});
-			// }
-
 			res.status(201).send({
 					message: services.message.common.genericSuccessMessage,
 					data: ret
@@ -65,6 +41,8 @@ module.exports = {
 			const { limit, offset } = calculateLimitAndOffset(currentPage, pageLimit);
 
 			let userId;
+			where.status = [0,1];
+
 			if (req.query.user_id) {
 				where.userId = req.query.user_id;
 				userId = req.query.user_id;
@@ -80,7 +58,7 @@ module.exports = {
 				let dtFinal = new Date(req.query.date_end);
 				dtInicial.setHours(0,0,0,9999);
 				dtFinal.setHours(23,59,59,9999);
-				where.paymentDate= {
+				where.createdAt= {
 					[Op.between]: [dtInicial, dtFinal]
 				}
 			}
