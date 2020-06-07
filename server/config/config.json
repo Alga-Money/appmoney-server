@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "akuma",
-    "password": "12345",
-    "database": "liana",
-    "host": "localhost",
+    "username": "root",
+    "password": "12345@Aa",
+    "database": "liana_test",
+    "host": "34.95.177.126",
     "dialect": "mysql"
   },
   "test": {
