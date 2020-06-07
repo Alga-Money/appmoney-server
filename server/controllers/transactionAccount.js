@@ -62,6 +62,12 @@ module.exports = {
 					[Op.between]: [dtInicial, dtFinal]
 				}
 			}
+			if(req.query.accountId){
+				where.accountId = req.query.accountId;
+			}
+			if(req.query.categoryId){
+				where.categoryId = req.query.categoryId;
+			}
 
 			const totalTransaction = await transactionAccount.findAll({
 				attributes: ['account_id', 'type',
